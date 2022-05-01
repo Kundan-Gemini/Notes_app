@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="../assests/style.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <title>Notes App</title>
+  </head>
+  <body>
+    <nav>
+      <div class="div1">
+        <h1 class="div1_h">
+          <span class="span1">Notes</span>
+          <span class="span2" >App</span>
+        </h1>
+      </div>
+    </nav>
+
+    <div class="form">
+      <div class="formdata">
+        <form class="form1" action="/addnotes" method="post">
+          <label for="" style="font-size: 30px;"><span style="color: crimson;" >Add</span> Note</label><br />
+
+          <label for="">Title</label>
+          <input type="text" name="NewTitle" id="newTitle" class="titleclass" placeholder="Title of the Note"/>
+
+          <br>
+          <label for="">Note</label>
+          <input type="text" name="newNote" id="newNote" class="noteclass" placeholder="Add Your Note" />
+          <button type="submit" class="button" >Add</button>
+        </form>
+      </div>
+    </div>
+
+    <table class="table">
+        <thead class="thead-dark">
+          <tr>
+            <th scope="col" name="tno" >#</th>
+            <th scope="col" name="ttitle" id="ttitle">Title</th>
+            <th scope="col" name="tnotes" id="tnotes">NOTES</th>
+            <th scope="col">ACTION</th>
+          </tr>
+        </thead>
+        <tbody>
+            
+            <% note.map((i, index) => { %>
+                <tr>
+                  <th scope="row"><%= index+1 %></th>
+                  <td><%= i.title %></td>
+                        <td><%= i.body %></td>
+                        <!-- <td><%= i.title %></td> -->
+                        <td style="display: inline-block;">
+                          <form action="<%=/saveLocal/+i.id%>" method="post" >
+                            <button type="submit" class="btn btn-danger" style="margin: 5px;" >Save</button>
+                          </form>
+                          <form action='<%= /deleteNote/ +i.id%>' method="POST" >
+                            <button type="submit" class="btn btn-danger" style="margin: 5px;">Delete</button>
+                          </form>
+                          
+                          <form action="<%=/edit/ +i.id%>" method="get">
+                            <button type="submit" class="btn btn-danger" style="margin: 5px;">Edit</button>
+                          </form>
+                          
+                        </td>
+                        </tr>
+                        <% }) %>
+
+
+            <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+            <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  </body>
+</html>
