@@ -6,7 +6,7 @@ const fs=require('fs');
 app.use("/assests",express.static('assests'));
 
 
-// Set EJS as templating engine
+
 app.set('view engine', 'ejs');
 app.use(bodyParser.urlencoded({
     extended: true
@@ -36,7 +36,7 @@ app.post('/addnotes',(req,res)=>{
     newN.title=req.body.NewTitle;
     note.push(newN);
 
-    //then we redirect it to the root route
+   
     res.redirect('/');
 })
 
@@ -84,18 +84,6 @@ app.post('/edit/:id',(req,res)=>{
     console.log(note);
     const id=req.params.id;
     console.log(id);
-    
-    // note[id].title=req.body.updatedtitle;
-    // note[id].body=req.body.updatednote;
-    // console.log(note);
-    // let newT=note[id-1].title;
-    // let newB=note[id-1].body;
-
-    // note[0].title=req.body.updatedtitle;
-    // note[0].body=req.body.updatednote;
-    // note[id-1].title=req.body.updatedtitle;
-    // note[id-1].body=req.body.updatednote;
-    // console.log(note);
 
     console.log(req.body.updatednote);
     console.log(req.body.updatedtitle);
